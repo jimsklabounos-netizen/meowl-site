@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>meowl & capy 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Comic Sans MS',cursive;
+  height:100vh;
+  overflow:hidden;
+  text-align:center;
+  background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
+  color:red;
+  transition:background 3s;
+}
+body.love{
+  background:radial-gradient(circle at top,#fff1f5,#ffd1dc);
+}
+
+h1{margin-top:40px;font-size:2rem}
+
+.center-buttons{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-top:45px;
+}
+
+button{
+  padding:28px 45px;
+  font-size:1.7rem;
+  border-radius:22px;
+  border:none;
+  background:#ff4e89;
+  color:white;
+}
+
+#no{position:absolute}
+
+.fade{
+  opacity:0;
+  transform:scale(.94);
+  transition:3s;
+}
+.fade.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+.cat{font-size:4.8rem;margin-top:20px}
+
+.kiss-zone{position:relative;height:150px}
+.kiss-cat{
+  position:absolute;
+  font-size:3.5rem;
+  top:45px;
+  transition:2s;
+}
+#left{left:-90px}
+#right{right:-90px}
+#kiss{
+  position:absolute;
+  left:50%;
+  top:35px;
+  transform:translateX(-50%);
+  font-size:2.6rem;
+  opacity:0;
+  transition:2s;
+}
+
+.small-cat{
+  position:absolute;
+  font-size:1.9rem;
+  animation:float 6s infinite linear;
+}
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-100px)}
+  100%{transform:translateY(0)}
+}
+
+.heart{
+  position:absolute;
+  font-size:1.8rem;
+  animation:heart 5s linear;
+}
+@keyframes heart{
+  from{opacity:1}
+  to{opacity:0;transform:translateY(-200px)}
+}
+
+#kissBtn{
+  display:none;
+  background:#ff69b4;
+}
+
+.kissPop{
+  position:absolute;
+  font-size:2.5rem;
+  animation:pop 3s linear;
+}
+@keyframes pop{
+  from{opacity:1}
+  to{opacity:0;transform:translateY(-190px)}
+}
+
+.proposal{
+  font-size:1.8rem;
+  color:#c2185b;
+  margin-top:35px;
+  opacity:0;
+  transform:scale(.9);
+  transition:4s;
+}
+.proposal.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+#foreverBtn{
+  display:none;
+  margin-top:25px;
+  background:#ff1493;
+  font-size:1.6rem;
+}
+
+.hug{
+  font-size:4rem;
+  margin-top:20px;
+  opacity:0;
+  transition:4s;
+}
+.hug.show{opacity:1}
+
+#overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.4rem;
+  z-index:10;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Do you want to be my Valentine, meowl? 😻</h1>
+
+<div class="center-buttons">
+  <button id="yes">💌 YES 💖</button>
+  <button id="no">💔 NO 😈</button>
+</div>
+
+<div class="fade" id="loveText">
+  I love you my daylight 🩷<br>
+  <strong>meowl 🐱 & capy 🦫</strong>
+</div>
+
+<div class="fade cat" id="bigCat">😺</div>
+
+<div class="kiss-zone">
+  <div class="kiss-cat" id="left">😽</div>
+  <div class="kiss-cat" id="right">😽</div>
+  <div id="kiss">💋</div>
+</div>
+
+<div class="fade" id="extra">
+  From the very first day… I knew 🥹💖
+</div>
+
+<button id="kissBtn">Send me a kiss 😘</button>
+
+<div class="proposal" id="proposal">
+  meowl…<br><br>
+  every moment with you feels like home.<br><br>
+  I don’t want a future without you.<br><br>
+  <strong>Will you marry me? 💍🩷</strong>
+</div>
+
+<button id="foreverBtn">YES FOREVER 💍✨</button>
+
+<div class="hug" id="hug">
+  🦫💞🐱<br>
+  capy & meowl, forever
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+</audio>
+
+<div id="overlay">🎵 Tap to start music 🎵</div>
+
+<script>
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+
+function moveNo(){
+  no.style.left=Math.random()*80+"%";
+  no.style.top=Math.random()*80+"%";
+}
+no.addEventListener("mouseenter",moveNo);
+no.addEventListener("touchstart",moveNo);
+
+// floating cats
+setInterval(()=>{
+  let c=document.createElement("div");
+  c.className="small-cat";
+  c.innerText="🐱";
+  c.style.left=Math.random()*100+"%";
+  c.style.top=Math.random()*100+"%";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),6000);
+},1000);
+
+// hearts
+function hearts(){
+  for(let i=0;i<15;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerText="❤️";
+    h.style.left=Math.random()*100+"%";
+    h.style.top="85%";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  }
+}
+
+yes.onclick=()=>{
+  document.body.classList.add("love");
+  document.getElementById("loveText").classList.add("show");
+  document.getElementById("bigCat").classList.add("show");
+
+  hearts();
+  setInterval(hearts,2000);
+
+  setTimeout(()=>{
+    document.getElementById("left").style.left="38%";
+    document.getElementById("right").style.right="38%";
+  },1200);
+
+  setTimeout(()=>document.getElementById("kiss").style.opacity=1,2800);
+  setTimeout(()=>document.getElementById("extra").classList.add("show"),3600);
+  setTimeout(()=>document.getElementById("kissBtn").style.display="inline-block",4800);
+  setTimeout(()=>document.getElementById("proposal").classList.add("show"),8500);
+  setTimeout(()=>document.getElementById("foreverBtn").style.display="inline-block",12500);
+};
+
+document.getElementById("kissBtn").onclick=()=>{
+  for(let i=0;i<22;i++){
+    let k=document.createElement("div");
+    k.className="kissPop";
+    k.innerText="💋";
+    k.style.left=Math.random()*100+"%";
+    k.style.top="80%";
+    document.body.appendChild(k);
+    setTimeout(()=>k.remove(),3000);
+  }
+};
+
+document.getElementById("foreverBtn").onclick=()=>{
+  document.getElementById("hug").classList.add("show");
+};
+
+// music
+document.getElementById("overlay").onclick=()=>{
+  document.getElementById("music").play();
+  overlay.style.display="none";
+};
+</script>
+
+</body>
+</html>
+
